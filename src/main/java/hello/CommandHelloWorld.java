@@ -1,7 +1,5 @@
 package hello;
 
-import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
-
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
 

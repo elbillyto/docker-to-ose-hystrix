@@ -2,14 +2,14 @@
   "kind": "DeploymentConfig",
   "apiVersion": "v1",
   "metadata": {
-    "name": "spring-boot-docker"
+    "name": "spring-boot-hello-hystrix"
   },
   "spec": {
     "template": { 
       "metadata": {
         "labels": {
-          "name": "spring-boot-docker",
-          "app": "spring-boot-docker",
+          "name": "spring-boot-hello-hystrix",
+          "app": "spring-boot-hello-hystrix",
         "hystrix.enabled" : "true",
         "hystrix.cluster" : "default"
         }
@@ -17,8 +17,8 @@
       "spec": {
         "containers": [
           {
-            "name": "spring-boot-docker",
-            "image": "springio/gs-spring-boot-docker",
+            "name": "spring-boot-hello-hystrix",
+            "image": "fusesource/docker-to-ose-hystrix",
             "ports": [
               {
                 "containerPort": 8080,
@@ -31,7 +31,7 @@
     },
     "replicas": 1, 
     "selector": {
-      "name": "spring-boot-docker"
+      "name": "spring-boot-hello-hystrix"
     },
     "triggers": [
       {
@@ -42,11 +42,11 @@
         "imageChangeParams": {
           "automatic": true,
           "containerNames": [
-            "spring-boot-docker"
+            "spring-boot-hello-hystrix"
           ],
           "from": {
             "kind": "ImageStreamTag",
-            "name": "spring-boot-docker:latest"
+            "name": "spring-boot-hello-hystrix:latest"
           }
         }
       }
