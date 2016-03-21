@@ -1,4 +1,4 @@
-Migrating SpringBoot to Docker / Kubernetes on OpenShift Enterprise 3.1: Hystrix Example
+Migrating SpringBoot to OpenShift Enterprise 3.1: Hystrix Example
 ------------------------------
 
 This is a SpringBoot Hello World example demonstrating connectivity to a Hystrix / Turbine Stream (Netflix OSS) running on OpenShift Enterprise 3.1
@@ -18,7 +18,7 @@ To test the a hystrix example on Docker only, run:
      
 This example is a simple hello world servlet, that inserts a name taken from a parameter set in the URI.
 
-You can access the servlet at: http://<docker IP>/?name=<insert name>
+You can access the servlet at: http://localhost:8080/?name=YourNameHere
 
 After you've finished running the docker example, be sure to tidy up:
 
@@ -52,7 +52,11 @@ You can access the servlet at: http://hello-hystrix-service.cdk.vm.10.1.2.2.xip.
 
 ### Using the Turbine Server and Hystrix Dashboard
 
-It's not a mandatory step but it does help a lot if you bring up the **Turbine Server** and **Hystrix Dashboard** and have a glimpse at the dashboard.
+To display the Hystrix metrics, follow the instructions to install the turbine-server and hystrix-dashboard described [here](https://github.com/sigreen/kubeflix).  Make sure you execute the following commands prior to running the maven commands:
+
+	oc create -f scripts/sa.json
+	oc policy add-role-to-group view system:serviceaccounts -n demo
+	oc policy add-role-to-group edit system:serviceaccounts -n demo
 
  ![Hello World Dashboard](images/dashboard.png "Hello World Dashboard")
 
