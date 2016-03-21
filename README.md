@@ -13,7 +13,7 @@ To build to the project:
 ### Testing the Hello Hystrix example in Docker
 To test the a hystrix example on Docker only, run:
 
-     mvn clean package docker:build fabric8:apply
+     mvn clean package docker:build
      docker run -p 8080:8080 -t fusesource/docker-to-ose-hystrix
      
 This example is a simple hello world servlet, that inserts a name taken from a parameter set in the URI.
