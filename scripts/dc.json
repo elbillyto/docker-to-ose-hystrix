@@ -1,0 +1,58 @@
+{
+  "kind": "DeploymentConfig",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "spring-boot-docker"
+  },
+  "spec": {
+    "template": { 
+      "metadata": {
+        "labels": {
+          "name": "spring-boot-docker",
+          "app": "spring-boot-docker",
+        "hystrix.enabled" : "true",
+        "hystrix.cluster" : "default"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "name": "spring-boot-docker",
+            "image": "springio/gs-spring-boot-docker",
+            "ports": [
+              {
+                "containerPort": 8080,
+                "protocol": "TCP"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "replicas": 1, 
+    "selector": {
+      "name": "spring-boot-docker"
+    },
+    "triggers": [
+      {
+        "type": "ConfigChange" 
+      },
+      {
+        "type": "ImageChange", 
+        "imageChangeParams": {
+          "automatic": true,
+          "containerNames": [
+            "spring-boot-docker"
+          ],
+          "from": {
+            "kind": "ImageStreamTag",
+            "name": "spring-boot-docker:latest"
+          }
+        }
+      }
+    ],
+    "strategy": { 
+      "type": "Rolling"
+    }
+  }
+}
