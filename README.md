@@ -57,6 +57,13 @@ To display the Hystrix metrics, follow the instructions to install the turbine-s
 	oc create -f scripts/sa.json
 	oc policy add-role-to-group view system:serviceaccounts -n demo
 	oc policy add-role-to-group edit system:serviceaccounts -n demo
+	
+To deploy the Turbine Service / Hystrix Dashboard to a remote running instance of OpenShift (assuming you have cloned the [kubeflix](https://github.com/sigreen/kubeflix) repo, execute the following:
+
+	cd turbine-service
+    mvn -Pf8-deploy -Ddocker.registry=<oseDockerHost>:<oseDockerPort> -Ddocker.username=$(oc whoami) -Ddocker.password=$(oc whoami -t)
+    cd ../hystrix-dashboard
+    mvn -Pf8-deploy -Ddocker.registry=<oseDockerHost>:<oseDockerPort> -Ddocker.username=$(oc whoami) -Ddocker.password=$(oc whoami -t)
 
  ![Hello World Dashboard](images/dashboard.png "Hello World Dashboard")
 
